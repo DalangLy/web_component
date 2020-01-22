@@ -12,6 +12,7 @@ class DAdminLayout extends HTMLElement{
             defaultTextColor = '#757575';
         const template = `
             <style>
+                @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css');
                 *{
                     box-sizing: border-box;
                     padding: 0;
@@ -63,9 +64,11 @@ class DAdminLayout extends HTMLElement{
                 
                 .nav-left{
                     float: left;
+                    margin-left: 10px;
                 }
                 .nav-right{
                     float: right;
+                    margin-right: 10px;
                 }
                 /*end header style*/
 
@@ -111,6 +114,34 @@ class DAdminLayout extends HTMLElement{
                     align-items: center;
                 }
                 /*end footer style*/
+
+                /* start sidebar toggle button style */
+                .sidebar-toggle{
+                    border: none;
+                    background: none;
+                    outline: none;
+                    cursor: pointer;
+                    font-size: 20px;
+                }
+                /* end sidebar toggle button style */
+
+                /* start user avatar style*/
+                .user-avatar{
+                    width: 40px;
+                    height: 40px;
+                    background-color: #fff;
+                    border-radius: 50%;
+                    border: 2px solid cyan;
+                    cursor: pointer;
+                    overflow: hidden;
+                }
+                .user-avatar img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    verticle-align: middle;
+                }
+                /* start user avatar style*/
             </style>
             <div>
                 <div class="sidebar"></div>
@@ -119,9 +150,17 @@ class DAdminLayout extends HTMLElement{
                     <div class="header">
                         <div class="header-container">
                             <ul class="nav-left">
-                                <button class="gg">Toggle</button>
+                                <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
                             </ul>
-                            <ul class="nav-right"></ul>
+                            <ul class="nav-right">
+
+                                <!-- start user avatar -->
+                                <div class="user-avatar">
+                                    <img src="https://www.biography.com/.image/t_share/MTE5NTU2MzE2NTE5MzAyNjY3/elizabeth-olsen-20631899-1-402.jpg">
+                                </div>
+                                <!-- end user avatar -->
+
+                            </ul>
                         </div>
                     </div>
                     <!--end header-->
@@ -147,7 +186,7 @@ class DAdminLayout extends HTMLElement{
     }
 
     setUpEvents(){
-        this.shadow.querySelector('.gg').onclick = e => this.toggleSidebarOnClick(e);
+        this.shadow.querySelector('.sidebar-toggle').onclick = e => this.toggleSidebarOnClick(e);
     }
 
     isSidebarOpen = true;
