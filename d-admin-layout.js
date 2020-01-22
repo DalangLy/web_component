@@ -168,6 +168,10 @@ class DAdminLayout extends HTMLElement{
                     justify-content: start;
                     align-items: center;
                     cursor: pointer;
+                    -webkit-user-select: none; /* Safari 3.1+ */
+                    -moz-user-select: none; /* Firefox 2+ */
+                    -ms-user-select: none; /* IE 10+ */
+                    user-select: none; /* Standard syntax */
                 }
                 .peers{
                     display: flex;
@@ -206,6 +210,68 @@ class DAdminLayout extends HTMLElement{
                     opacity: 0;
                 }
                 /*end side bar logo style*/
+
+
+                /* start right nav user avatar and name container style */
+                .user-avatar-and-name-container{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    cursor: pointer;
+                    -webkit-user-select: none; /* Safari 3.1+ */
+                    -moz-user-select: none; /* Firefox 2+ */
+                    -ms-user-select: none; /* IE 10+ */
+                    user-select: none; /* Standard syntax */
+                }
+                .user-avatar-and-name-container .username{
+                    margin-left: 5px;
+                }
+                /* end right nav user avatar and name container style */
+
+                /* start user account dropdown container style */
+                .user-account-dropdown-container{
+                    width: 150px;
+                    background-color: #fff;
+                    position: absolute;
+                    top: 65px;
+                    right: 5px;
+                    border: `+borderColor+`;
+                    z-index: 1001;
+                    border-radius: 5px;
+                    -webkit-box-shadow: 0px 0px 5px 0px rgba(168,168,168,1);
+                    -moz-box-shadow: 0px 0px 5px 0px rgba(168,168,168,1);
+                    box-shadow: 0px 0px 5px 0px rgba(168,168,168,1);
+                    transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                    transform: translateX(160px);
+                    -webkit-transform: translateX(160px);
+                    -o-transform: translateX(160px);
+                }
+                .user-account-dropdown-container.open{
+                    transform: translateX(0);
+                    -webkit-transform: translateX(0);
+                    -o-transform: translateX(0);
+                }
+                .user-account-dropdown-container-inner{
+                    padding: 10px;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+                .user-account-dropdown-item{
+                    text-decoration: none;
+                    margin: 10px;
+                    transition: color 0.3s ease;
+                    -webkit-transition: color 0.3s ease;
+                    -o-transition: color 0.3s ease;
+                }
+                .user-account-dropdown-item:hover{
+                    color: black;
+                }
+                /* end user account dropdown container style */
+
             </style>
             <div>
 
@@ -243,11 +309,30 @@ class DAdminLayout extends HTMLElement{
                             </ul>
                             <ul class="nav-right">
 
-                                <!-- start user avatar -->
-                                <div class="user-avatar">
-                                    <img src="https://www.biography.com/.image/t_share/MTE5NTU2MzE2NTE5MzAyNjY3/elizabeth-olsen-20631899-1-402.jpg">
+                                <!-- start left nav user avatar and name container-->
+                                <div class="user-avatar-and-name-container">
+
+                                    <!-- start user avatar -->
+                                    <div class="user-avatar">
+                                        <img src="https://www.biography.com/.image/t_share/MTE5NTU2MzE2NTE5MzAyNjY3/elizabeth-olsen-20631899-1-402.jpg">
+                                    </div>
+                                    <!-- end user avatar -->
+
+                                    <!-- start user name -->
+                                    <span class="username">Dalang</span>
+                                    <!-- end user name -->
+                                    
+                                    <!-- start account dropdown container -->
+                                    <div class="user-account-dropdown-container">
+                                        <div class="user-account-dropdown-container-inner">
+                                            <a href="" class="user-account-dropdown-item"><i class="fas fa-user-circle"></i> Account</a>
+                                            <a href="" class="user-account-dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                        </div>
+                                    </div>
+                                    <!-- end account dropdown container -->
+
                                 </div>
-                                <!-- end user avatar -->
+                                <!-- end left nav user avatar and name container-->
 
                             </ul>
                         </div>
@@ -281,6 +366,8 @@ class DAdminLayout extends HTMLElement{
         this.shadow.querySelector('.sidebar-toggle').onclick = e => this.toggleSidebarOnClick(e);
         this.shadow.querySelector('.sidebar').onmouseover = e => this.maximizeSideBarOnMouseOver(e);
         this.shadow.querySelector('.sidebar').onmouseout = e => this.minimizeSideBarOnMouseOver(e);
+        this.shadow.querySelector('.user-avatar-and-name-container').onclick = e => this.showUpUserAccountDropDown(e);
+        window.onclick = e => this.windowClickEvent(e);//use to remove user account dropdown when it opened (click everywhere on screen to close it)
     }
 
     isSidebarOpen = true;
@@ -330,6 +417,28 @@ class DAdminLayout extends HTMLElement{
             sidebarLogoTitle.classList.remove('collapsed');
         }else{
             sidebarLogoTitle.classList.add('collapsed');
+        }
+    }
+
+    isUserAccountDropdownOpen = false;
+    showUpUserAccountDropDown(e){
+        e.stopPropagation();
+        const userAccountDropDown = this.shadow.querySelector('.user-account-dropdown-container');
+        if(this.isUserAccountDropdownOpen){
+            userAccountDropDown.classList.remove('open');
+        }else{
+            userAccountDropDown.classList.add('open');
+        }
+        this.isUserAccountDropdownOpen = !this.isUserAccountDropdownOpen;
+    }
+
+    windowClickEvent(e){
+        e.stopPropagation();
+
+        const userAccountDropDown = this.shadow.querySelector('.user-account-dropdown-container');
+        if(this.isUserAccountDropdownOpen){
+            userAccountDropDown.classList.remove('open');
+            this.isUserAccountDropdownOpen = !this.isUserAccountDropdownOpen;
         }
     }
 }
