@@ -91,9 +91,14 @@ class DAdminLayout extends HTMLElement{
                     transition: all 0.3s ease;
                     -webkit-transition: all 0.3s ease;
                     -o-transition: all 0.3s ease;
+                    overflow: hidden;
                 }
                 .sidebar.collapsed{
                     width: `+sideBarWidthCollapsed+`px;
+                }
+                .sidebar-inner{
+                    width: `+sidebarWidthFull+`px;
+                    height: 100%;
                 }
                 /*end side bar style*/
 
@@ -151,12 +156,75 @@ class DAdminLayout extends HTMLElement{
                     verticle-align: middle;
                 }
                 /* start user avatar style*/
+
+
+                /*start side bar logo style*/
+                .sidebar-logo{
+                    width: 100%;
+                    height: `+headerHeight+`px;
+                    padding: 10px 5%; /* use percentage to get better sidebar collapsed style */
+                    border-bottom: `+borderColor+`;
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                    cursor: pointer;
+                }
+                .peers{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                }
+                .sidebar-logo-image{
+                    width: 40px;
+                    height: 40px;
+                    transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                }
+                .sidebar-logo-image img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: contain;
+                    verticle-align: middle;
+                    transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                }
+                .sidebar-logo-title{
+                    font-size: 20px;
+                    margin-left: 20px;
+                    display: block;
+                    transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
+                    opacity: 1;
+                }
+                .sidebar-logo-title.collapsed{
+                    opacity: 0;
+                }
+                /*end side bar logo style*/
             </style>
             <div>
 
                 <!--start sidebar-->
                 <div class="sidebar">
+                    <div class="sidebar-inner">
 
+                        <!-- start side bar logo -->
+                        <div class="sidebar-logo">
+                            <div class="peers">
+                                <div class="sidebar-logo-image">
+                                    <img src="https://bower.io/img/bower-logo.png">
+                                </div>
+                                <span class="sidebar-logo-title">Company Name</span>
+                            </div>
+                        </div>
+                        <!-- end side bar logo -->
+
+                    </div>
                 </div>
                 <!--end sidebar-->
 
@@ -227,12 +295,14 @@ class DAdminLayout extends HTMLElement{
             header.classList.add('collapsed');
             sidebar.classList.add('collapsed');
             pageContainer.classList.add('collapsed');
+            this.showSideBarLogoTitle(false);
         }
         else{
             //open
             header.classList.remove('collapsed');
             sidebar.classList.remove('collapsed');
             pageContainer.classList.remove('collapsed');
+            this.showSideBarLogoTitle(true);
         }
         this.isSidebarOpen = !this.isSidebarOpen;
     }
@@ -240,15 +310,26 @@ class DAdminLayout extends HTMLElement{
     maximizeSideBarOnMouseOver(e){
         const sidebar = this.shadow.querySelector('.sidebar');
         if(sidebar.classList.contains('collapsed') && !this.isSidebarOpen){ //accur only when sidebar is collapsed
-            //console.log('has');
+            //console.log('side bar is collapsed');
             sidebar.classList.remove('collapsed');
+            this.showSideBarLogoTitle(true);
         }
     }
     minimizeSideBarOnMouseOver(e){
         const sidebar = this.shadow.querySelector('.sidebar');
         if(!sidebar.classList.contains('collapsed') && !this.isSidebarOpen){ //accur only when sidebar is collapsed
-            //console.log('not has');
+            //console.log('side bar is not collapsed');
             sidebar.classList.add('collapsed');
+            this.showSideBarLogoTitle(false);
+        }
+    }
+
+    showSideBarLogoTitle(isShow){
+        const sidebarLogoTitle = this.shadow.querySelector('.sidebar-logo-title');
+        if(isShow){
+            sidebarLogoTitle.classList.remove('collapsed');
+        }else{
+            sidebarLogoTitle.classList.add('collapsed');
         }
     }
 }
