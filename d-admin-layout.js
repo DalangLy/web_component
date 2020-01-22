@@ -9,10 +9,11 @@ class DAdminLayout extends HTMLElement{
             sideBarWidthCollapsed = 70,
             borderColor = '1px solid rgba(0,0,0,.0625)',
             adminBackgroundColor = '#f9fafb',
-            defaultTextColor = '#757575';
+            defaultTextColor = '#757575',
+            headerHeight = 60;
         const template = `
             <style>
-                @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css');
+                @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css'); /* you must link this link in index.html also */
                 *{
                     box-sizing: border-box;
                     padding: 0;
@@ -31,6 +32,8 @@ class DAdminLayout extends HTMLElement{
                     padding-left: `+sidebarWidthFull+`px;
                     width: 100%;
                     transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
                 }
                 .page-container.collapsed{
                     padding-left: `+sideBarWidthCollapsed+`px;
@@ -44,9 +47,11 @@ class DAdminLayout extends HTMLElement{
                     right: 0;
                     top: 0;
                     left: 0;
-                    height: 60px;
+                    height: `+headerHeight+`px;
                     border-bottom: `+borderColor+`;
                     transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
                     background-color: #fff;
                     padding-left: `+sidebarWidthFull+`px; <* use padding over margin because it not affect width *>
                 }
@@ -84,6 +89,8 @@ class DAdminLayout extends HTMLElement{
                     z-index: 1000;
                     border-right: `+borderColor+`;
                     transition: all 0.3s ease;
+                    -webkit-transition: all 0.3s ease;
+                    -o-transition: all 0.3s ease;
                 }
                 .sidebar.collapsed{
                     width: `+sideBarWidthCollapsed+`px;
@@ -95,6 +102,8 @@ class DAdminLayout extends HTMLElement{
                 .main-content{
                     background-color: `+adminBackgroundColor+`;
                     height: 100vh;
+                    padding: 10px;
+                    margin-top: `+headerHeight+`px; /* to avoid hide content behind header */
                 }
                 /*end main content style*/
 
@@ -144,13 +153,25 @@ class DAdminLayout extends HTMLElement{
                 /* start user avatar style*/
             </style>
             <div>
-                <div class="sidebar"></div>
+
+                <!--start sidebar-->
+                <div class="sidebar">
+
+                </div>
+                <!--end sidebar-->
+
+                <!--start page container-->
                 <div class="page-container">
+
                     <!--start header-->
                     <div class="header">
                         <div class="header-container">
                             <ul class="nav-left">
+
+                                <!-- start sidebar toggle button -->
                                 <button class="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                                <!-- end sidebar toggle button -->
+
                             </ul>
                             <ul class="nav-right">
 
@@ -178,7 +199,10 @@ class DAdminLayout extends HTMLElement{
                         <div class="footer-content">Copyright © 2017 Designed by Dalang. All rights reserved.</div>
                     </footer>
                     <!--end footer-->
+
                 </div>
+                <!--end page container-->
+
             </div>
         `;
         this.shadow.innerHTML = template;
