@@ -211,6 +211,8 @@ class DAdminLayout extends HTMLElement{
 
     setUpEvents(){
         this.shadow.querySelector('.sidebar-toggle').onclick = e => this.toggleSidebarOnClick(e);
+        this.shadow.querySelector('.sidebar').onmouseover = e => this.maximizeSideBarOnMouseOver(e);
+        this.shadow.querySelector('.sidebar').onmouseout = e => this.minimizeSideBarOnMouseOver(e);
     }
 
     isSidebarOpen = true;
@@ -233,6 +235,21 @@ class DAdminLayout extends HTMLElement{
             pageContainer.classList.remove('collapsed');
         }
         this.isSidebarOpen = !this.isSidebarOpen;
+    }
+
+    maximizeSideBarOnMouseOver(e){
+        const sidebar = this.shadow.querySelector('.sidebar');
+        if(sidebar.classList.contains('collapsed') && !this.isSidebarOpen){ //accur only when sidebar is collapsed
+            //console.log('has');
+            sidebar.classList.remove('collapsed');
+        }
+    }
+    minimizeSideBarOnMouseOver(e){
+        const sidebar = this.shadow.querySelector('.sidebar');
+        if(!sidebar.classList.contains('collapsed') && !this.isSidebarOpen){ //accur only when sidebar is collapsed
+            //console.log('not has');
+            sidebar.classList.add('collapsed');
+        }
     }
 }
 window.customElements.define('d-admin-layout', DAdminLayout);
