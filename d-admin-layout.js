@@ -2,6 +2,74 @@ class DAdminLayout extends HTMLElement{
     constructor(){
         super();
         this.shadow = this.attachShadow({mode: 'closed'});
+        this._username = null;
+        this._useravatar = null;
+        this._companyname = null;
+        this._companylogo = null;
+        this._logoutlink = null;
+    }
+
+    get useravatar(){
+        return this._useravatar;
+    }
+
+    get username(){
+        return this._username;
+    }
+
+    get companyname(){
+        return this._companyname;
+    }
+
+    get companylogo(){
+        return this._companylogo;
+    }
+
+    get logoutlink(){
+        return this._logoutlink;
+    }
+
+    set useravatar(val){
+        this.setAttribute('useravatar', val);
+    }
+
+    set username(val){
+        this.setAttribute('username', val);
+    }
+
+    set companyname(val){
+        this.setAttribute('companyname', val);
+    }
+
+    set companylogo(val){
+        this.setAttribute('companylogo', val);
+    }
+
+    set logoutlink(val){
+        this.setAttribute('logoutlink', val);
+    }
+
+    static get observedAttributes(){
+        return ['username', 'useravatar', 'companyname', 'companylogo', 'logoutlink'];
+    }
+
+    attributeChangedCallback(name, oldValue, newValue){
+        switch(name){
+            case 'useravatar':
+                this._useravatar = newValue;
+                break;
+            case 'username':
+                this._username = newValue;
+                break;
+            case 'companyname':
+                this._companyname = newValue;
+                break;
+            case 'companylogo':
+                this._companylogo = newValue;
+                break;
+            case 'logoutlink':
+                this._logoutlink = newValue;
+        }
     }
 
     connectedCallback(){
@@ -53,7 +121,7 @@ class DAdminLayout extends HTMLElement{
                     -webkit-transition: all 0.3s ease;
                     -o-transition: all 0.3s ease;
                     background-color: #fff;
-                    padding-left: `+sidebarWidthFull+`px; <* use padding over margin because it not affect width *>
+                    padding-left: `+sidebarWidthFull+`px; /* use padding over margin because it not affect width */
                 }
                 .header.collapsed{
                     padding-left: `+sideBarWidthCollapsed+`px;
@@ -321,9 +389,9 @@ class DAdminLayout extends HTMLElement{
                         <div class="sidebar-logo">
                             <div class="peers">
                                 <div class="sidebar-logo-image">
-                                    <img src="https://bower.io/img/bower-logo.png">
+                                    <img src="${this.companylogo}">
                                 </div>
-                                <span class="sidebar-logo-title">Company Name</span>
+                                <span class="sidebar-logo-title">${this.companyname}</span>
                             </div>
                         </div>
                         <!-- end side bar logo -->
@@ -350,128 +418,40 @@ class DAdminLayout extends HTMLElement{
                             </li>
                             <li class="nav-item">
                                 <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
-                                    <span class="title">Roles</span>
-                                </a>
-                            </li>
-
-
-
-
-
-
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
-                                    <span class="title">Users</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
-                                    <span class="title">Clients</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="icon-holder"><i class="fas fa-user-tag" style="color: pink"></i></span>
                                     <span class="title">Roles</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
-                                    <span class="title">Users</span>
+                                    <span class="icon-holder"><i class="fas fa-mug-hot" style="color: green"></i></span>
+                                    <span class="title">Client Accounts</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
-                                    <span class="title">Clients</span>
+                                    <span class="icon-holder"><i class="fas fa-project-diagram" style="color: cyan"></i></span>
+                                    <span class="title">Projects</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
-                                    <span class="title">Roles</span>
+                                    <span class="icon-holder"><i class="fas fa-briefcase" style="color: yellow"></i></span>
+                                    <span class="title">Works</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
-                                    <span class="title">Users</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
-                                    <span class="title">Clients</span>
+                                    <span class="icon-holder"><i class="fas fa-crosshairs" style="color: gray"></i></span>
+                                    <span class="title">Positions</span>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a class="sidebar-link">
                                     <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
-                                    <span class="title">Roles</span>
+                                    <span class="title">Tasks</span>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
-                                    <span class="title">Users</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
-                                    <span class="title">Clients</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
-                                    <span class="title">Roles</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
-                                    <span class="title">Users</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
-                                    <span class="title">Clients</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
-                                    <span class="title">Roles</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
-                                    <span class="title">Users</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
-                                    <span class="title">Clients</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="sidebar-link">
-                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
-                                    <span class="title">Roles</span>
-                                </a>
-                            </li>
-
-
-
-
 
 
                         </ul>
@@ -501,19 +481,19 @@ class DAdminLayout extends HTMLElement{
 
                                     <!-- start user avatar -->
                                     <div class="user-avatar">
-                                        <img src="https://www.biography.com/.image/t_share/MTE5NTU2MzE2NTE5MzAyNjY3/elizabeth-olsen-20631899-1-402.jpg">
+                                        <img src="${this.useravatar}">
                                     </div>
                                     <!-- end user avatar -->
 
                                     <!-- start user name -->
-                                    <span class="username">Dalang</span>
+                                    <span class="username">${this.username}</span>
                                     <!-- end user name -->
                                     
                                     <!-- start account dropdown container -->
                                     <div class="user-account-dropdown-container">
                                         <div class="user-account-dropdown-container-inner">
                                             <a href="" class="user-account-dropdown-item"><i class="fas fa-user-circle"></i> Account</a>
-                                            <a href="" class="user-account-dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                            <a href="${this.logoutlink}" class="user-account-dropdown-item"><i class="fas fa-sign-out-alt"></i> Logout</a>
                                         </div>
                                     </div>
                                     <!-- end account dropdown container -->
