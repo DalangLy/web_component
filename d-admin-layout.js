@@ -272,6 +272,44 @@ class DAdminLayout extends HTMLElement{
                 }
                 /* end user account dropdown container style */
 
+
+                /* start sidebar menu style */
+                .sidebar-menu{
+                    width: 100%;
+                    height: 100vh;
+                    overflow: auto;
+                }
+                .nav-item{
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+                .nav-item:hover .title{
+                    color: black;
+                }
+                .mT-30{
+                    margin-top: 30px;
+                }
+                .sidebar-link{
+                    padding: 10px 19px;
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                }
+                .icon-holder{
+                    font-size: 20px;
+                    width: 30px;
+                    height: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .sidebar-link .title{
+                    margin-left: 22px;
+                    transition: color 0.3s ease;
+                    -webkit-transition: color 0.3s ease;
+                    -o-transition: color 0.3s ease;
+                }
+                /* end sidebar menu style */
             </style>
             <div>
 
@@ -289,6 +327,155 @@ class DAdminLayout extends HTMLElement{
                             </div>
                         </div>
                         <!-- end side bar logo -->
+
+                        <!-- start sidebar menu -->
+                        <ul class="sidebar-menu">
+                            <li class="nav-item mT-30">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-address-card" style="color: red;"></i></span>
+                                    <span class="title">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
+                                    <span class="title">Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
+                                    <span class="title">Clients</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="title">Roles</span>
+                                </a>
+                            </li>
+
+
+
+
+
+
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
+                                    <span class="title">Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
+                                    <span class="title">Clients</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="title">Roles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
+                                    <span class="title">Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
+                                    <span class="title">Clients</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="title">Roles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
+                                    <span class="title">Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
+                                    <span class="title">Clients</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="title">Roles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
+                                    <span class="title">Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
+                                    <span class="title">Clients</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="title">Roles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
+                                    <span class="title">Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
+                                    <span class="title">Clients</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="title">Roles</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-users" style="color: purple;"></i></span>
+                                    <span class="title">Users</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fab fa-accusoft" style="color:blue"></i></span>
+                                    <span class="title">Clients</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="sidebar-link">
+                                    <span class="icon-holder"><i class="fas fa-adjust" style="color: green"></i></span>
+                                    <span class="title">Roles</span>
+                                </a>
+                            </li>
+
+
+
+
+
+
+                        </ul>
+                        <!-- end sidebar menu -->
 
                     </div>
                 </div>
