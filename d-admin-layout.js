@@ -221,7 +221,7 @@ class DAdminLayout extends HTMLElement{
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
-                    verticle-align: middle;
+                    vertical-align: middle;
                 }
                 /* start user avatar style*/
 
@@ -260,7 +260,7 @@ class DAdminLayout extends HTMLElement{
                     width: 100%;
                     height: 100%;
                     object-fit: contain;
-                    verticle-align: middle;
+                    vertical-align: middle;
                     transition: all 0.3s ease;
                     -webkit-transition: all 0.3s ease;
                     -o-transition: all 0.3s ease;
@@ -538,7 +538,6 @@ class DAdminLayout extends HTMLElement{
     }
 
     isSidebarOpen = true;
-    
     toggleSidebarOnClick(e){
         const header = this.shadow.querySelector('.header');
         const sidebar = this.shadow.querySelector('.sidebar');
